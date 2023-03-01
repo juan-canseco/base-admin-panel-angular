@@ -40,8 +40,8 @@ export class AuthService {
   }
 
   hasPermission(permission : string) : boolean {
-    const permissions : Set<string> = JSON.parse("permissions");
-    return permissions.has(permission);
+    const permissions : Array<string> = JSON.parse(localStorage.getItem("permissions"));
+    return permissions.includes(permission);
   }
 
   isLoggedIn() : boolean {

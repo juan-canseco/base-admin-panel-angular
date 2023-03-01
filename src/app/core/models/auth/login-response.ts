@@ -3,7 +3,7 @@ export interface LoginResponse {
     role: string;
     email: string;
     fullname: string;
-    permissions : Set<string>;
+    permissions : Array<string>;
     isVerified: boolean;
     token : string;
 };
