@@ -9,7 +9,7 @@
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-md-12">
-                                <form class="form-inline justify-content-end align-self-end">
+                                <div class="form-inline justify-content-end align-self-end">
                                     <div class="form-group">
                                         <input type="text" value="" placeholder="Search..." class="form-control" id="filter">
                                     </div>
@@ -38,38 +38,39 @@
                                         </div>
                                     </div>
 
-                                    <button class="btn btn-primary">Filter</button>
-                                    <button class="btn btn-primary">Create New</button>
-                                </form>
+                                    <button class="btn btn-primary" type="submit" (click)="filter()">Filter</button>
+                                    <a class="btn btn-primary" routerLink="/users/create">Create New</a>
+                                </div>
                             </div>
                         </div>
-                        <div class="card-content table-responsive table-full-width">
+                        <div class="card-content table-responsive table-full-width" *ngIf="pagedList && pagedList.rowsCount > 0">
                             <table class="table">
                                 <thead class="text-secondary">
                                   <th>Id</th>
                                   <th>Name</th>
                                   <th>Role</th>
                                   <th>Active</th>
+                                  <th>Actions</th>
                                 </thead>
                                 <tbody>
-                                  <tr>
-                                    <td>1</td>
-                                    <td>John</td>
-                                    <td>Admin</td>
-                                    <td class="text-success">Yes</td>
-                                  </tr>
-                                  <tr>
-                                    <td>2</td>
-                                    <td>Jane</td>
-                                    <td>Admin</td>
-                                    <td class="text-success">Yes</td>
-                                  </tr>
-                                  <tr>
-                                    <td>3</td>
-                                    <td>Smith</td>
-                                    <td>Employee</td>
-                                    <td class="text-danger">No</td>
-                                  </tr>
+                                    <tr *ngFor="let item of pagedList.items">
+                                        <td>{{item.id}} </td>
+                                        <td> {{item.fullname}} </td>
+                                        <td>{{item.role}}</td>
+                                        <td *ngIf="item.active; else elseBlock" class="text-success">Yes</td>
+                                        <ng-template #elseBlock> <tr class="text-danger">No</tr></ng-template>
+                                        <td>
+                                            <button type="button" class="btn btn-primary" routerLink="/users/details/{{item.id}}">
+                                                <i class="material-icons">visibility</i>
+                                            </button>
+                                            <button type="button" class="btn btn-secondary">
+                                                <i class="material-icons">edit</i>
+                                            </button>
+                                            <button type="button" class="btn btn-danger">
+                                                <i class="material-icons">delete</i>
+                                            </button>
+                                        </td>
+                                    </tr>
                                 </tbody>
                               </table>
                         </div>

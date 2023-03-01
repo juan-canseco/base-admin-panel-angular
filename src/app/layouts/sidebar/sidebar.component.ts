@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MenuItem } from 'app/core/models/menu';
-import { AuthService } from 'app/core/services/auth.service';
-import { UserPermissions, RolePermissions, ProductPermissions,  } from 'app/core/models/auth';
+import { PermissionsService } from 'app/core/services/permissions.service';
 
 declare const $: any;
 @Component({
@@ -12,26 +10,10 @@ declare const $: any;
 export class SidebarComponent implements OnInit {
   menuItems: any[];
 
-  constructor(private authService : AuthService) { }
+  constructor(private permissionsService : PermissionsService) { }
 
   ngOnInit() {
-    this.menuItems = this.buildMenuItems();
-  }
-
-
-  private buildMenuItems() : Array<MenuItem> {
-    var menuItems = Array<MenuItem>();
-    menuItems.push({path: '/dashboard', title: 'Dashboard',  icon: 'dashboard', class: ''});
-    if (this.authService.hasPermission(UserPermissions.View)) {
-      menuItems.push({ path: '/users', title: 'Users',  icon:'groups', class: '' });
-    }    
-    if (this.authService.hasPermission(RolePermissions.View)) {
-      menuItems.push({ path: '/roles', title: 'Roles',  icon:'manage_accounts', class: '' });
-    }
-    if (this.authService.hasPermission(ProductPermissions.View)) {
-      menuItems.push({ path: '/products', title: 'Products',  icon:'inventory', class: '' })
-    }
-    return menuItems;
+    this.menuItems = this.permissionsService.buildMenuFromPermissions();
   }
 
   isMobileMenu() {

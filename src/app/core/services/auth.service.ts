@@ -38,12 +38,7 @@ export class AuthService {
     localStorage.removeItem("permissions");
     localStorage.removeItem("userProfile");
   }
-
-  hasPermission(permission : string) : boolean {
-    const permissions : Array<string> = JSON.parse(localStorage.getItem("permissions"));
-    return permissions.includes(permission);
-  }
-
+  
   isLoggedIn() : boolean {
     const token = localStorage.getItem("token");
     return !this.jwtHelper.isTokenExpired(token);
