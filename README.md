@@ -1,5 +1,5 @@
 # Material Dashboard Base Project Angular (Work in Progress)
-Modified version of the [Material Dashboard Angular](https://www.creative-tim.com/product/material-dashboard-angular2) created by [Creative Tim](https://www.creative-tim.com/), used for personal projects.
+Modified version of the [Material Dashboard Angular](https://www.creative-tim.com/product/material-dashboard-angular2) created by [Creative Tim](https://www.creative-tim.com/), used for personal projects (WORK IN PROGRESS).
 
 ![alt text](https://github.com/juan-canseco/base-admin-panel-angular/blob/main/images/demo.png)
 
