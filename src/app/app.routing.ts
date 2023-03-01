@@ -4,6 +4,7 @@ import { BrowserModule  } from '@angular/platform-browser';
 import { Routes, RouterModule } from '@angular/router';
 import { AdminLayoutComponent } from './features/main';
 import { NotLoggedInGuard } from './core/guards/not-logged-in.guard';
+import { AuthGuard } from './core/guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -17,7 +18,8 @@ const routes: Routes = [
     component: AdminLayoutComponent,
     children: [{
       path: '',
-      loadChildren: () => import('./features/main').then(m => m.AdminLayoutModule)
+      loadChildren: () => import('./features/main').then(m => m.AdminLayoutModule),
+      canActivateChild: [AuthGuard]
     }]
   },
   {
