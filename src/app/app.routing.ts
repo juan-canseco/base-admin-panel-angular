@@ -3,6 +3,7 @@ import { CommonModule, } from '@angular/common';
 import { BrowserModule  } from '@angular/platform-browser';
 import { Routes, RouterModule } from '@angular/router';
 import { AdminLayoutComponent } from './features/main';
+import { NotLoggedInGuard } from './core/guards/not-logged-in.guard';
 
 const routes: Routes = [
   {
@@ -21,7 +22,8 @@ const routes: Routes = [
   },
   {
     path: 'auth',
-    loadChildren: () => import('./features/auth/').then(m => m.AuthModule)
+    loadChildren: () => import('./features/auth/').then(m => m.AuthModule),
+    canActivateChild: [NotLoggedInGuard]
   }
 ];
 
