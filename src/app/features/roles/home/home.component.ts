@@ -1,4 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { Role } from 'app/core/models/roles';
+import { PagedList } from 'app/core/models/shared';
+import { RolesService, GetRolesQueryParams} from 'app/core/services/roles.service';
+import { RolePermissions } from 'app/core/models/auth';
+import { PermissionsService } from 'app/core/services/permissions.service';
+
 
 @Component({
   selector: 'app-home',
@@ -7,9 +13,34 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  constructor(private roleService : RolesService, private permissionsService : PermissionsService) { }
+  
+  pagedList! : PagedList<Role>;
+  hasCreatePermission : boolean;
+  hasEditPermission : boolean;
+  hasDeletePermission : boolean;
 
   ngOnInit(): void {
+    this.getRoles();
+    this.hasCreatePermission = this.permissionsService.hasPermission(RolePermissions.Create);
+    this.hasDeletePermission = this.permissionsService.hasPermission(RolePermissions.Delete);
+    this.hasEditPermission = this.permissionsService.hasPermission(RolePermissions.Edit);
+  }
+
+  getRoles() {
+    var params : GetRolesQueryParams = { pageNumber: 1, pageSize: 10, sortBy: '', sortOrder: '', filter: ''}; 
+    this.roleService.getRoles(params).subscribe({
+      next: result => {
+        this.pagedList = result;
+      },
+      error: error => {
+        console.log(error);
+      }
+    });
+  }
+
+  public filter() {
+
   }
 
 }

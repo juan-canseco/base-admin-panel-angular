@@ -1,3 +1,83 @@
-<div class="main-conent">
-    <p> Demo of main content</p>
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="card">
+                <div class="card-header card-header-primary">
+                    <h4 class="card-title"> Roles </h4>
+                </div>
+                <div class="card-content">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-inline justify-content-end align-self-end">
+                                    <div class="form-group">
+                                        <input type="text" value="" placeholder="Search..." class="form-control" id="filter">
+                                    </div>
+
+                                    <div class="dropdown">
+                                        <button class="btn btn-secondary dropdown-toggle" type="button" id="itemsPerPageButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Items Per Page
+                                        </button>
+                                        <div class="dropdown-menu" aria-labelledby="itemsPerPageButton">
+                                            <a class="dropdown-item" href="#">5</a>
+                                            <a class="dropdown-item" href="#">10</a>
+                                            <a class="dropdown-item" href="#">15</a>
+                                            <a class="dropdown-item" href="#">20</a>
+                                            <a class="dropdown-item" href="#">25</a>
+                                        </div>
+                                    </div>
+
+                                    <div class="dropdown">
+                                        <button class="btn btn-secondary dropdown-toggle" type="button" id="sortByButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Sort By
+                                        </button>
+                                        <div class="dropdown-menu" aria-labelledby="sortByButton">
+                                            <a class="dropdown-item" href="#">Name</a>
+                                            <a class="dropdown-item" href="#">Active</a>
+                                        </div>
+                                    </div>
+
+                                    <button class="btn btn-primary" type="submit" (click)="filter()">Filter</button>
+                                    <a class="btn btn-primary" *ngIf="hasCreatePermission" routerLink="/roles/create">Create New</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-content table-responsive table-full-width" *ngIf="pagedList && pagedList.rowsCount > 0">
+                            <table class="table">
+                                <thead class="text-secondary">
+                                  <th>Id</th>
+                                  <th>Name</th>
+                                  <th>Active</th>
+                                  <th>Actions</th>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let item of pagedList.items">
+                                        <td>{{item.id}} </td>
+                                        <td> {{item.name}} </td>
+                                        <td *ngIf="item.active; else elseBlock" class="text-success">Yes</td>
+                                        <ng-template #elseBlock> <tr class="text-danger">No</tr></ng-template>
+                                        <td>
+                                            <button mat-raised-button type="button" class="btn btn-primary btn-sm" routerLink="/users/details/{{item.id}}">
+                                                <i class="material-icons">visibility</i>
+                                            </button>
+                                            <button *ngIf="hasEditPermission" mat-raised-button type="button" class="btn btn-secondary btn-sm">
+                                                <i class="material-icons">edit</i>
+                                            </button>
+                                            <button *ngIf="hasDeletePermission" mat-raised-button type="button" class="btn btn-danger btn-sm">
+                                                <i class="material-icons">delete</i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                              </table>
+                        </div>
+
+                        <div class="card-footer">
+                            <i class="material-icons">access_time</i> updated 4 minutes ago
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

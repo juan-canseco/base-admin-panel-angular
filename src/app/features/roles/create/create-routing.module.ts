@@ -1,14 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { CreateComponent } from './create.component';
 
 const routes: Routes = [
   {
     path: '',
-    loadChildren: () => import('./home').then(m => m.HomeModule)
-  },
-  {
-    path: 'create',
-    loadChildren: () => import('./create').then(m => m.CreateModule)
+    component : CreateComponent
   }
 ];
 
@@ -16,4 +13,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class RolesRoutingModule { }
+export class CreateRoutingModule { }

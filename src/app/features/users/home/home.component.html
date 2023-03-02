@@ -39,7 +39,7 @@
                                     </div>
 
                                     <button class="btn btn-primary" type="submit" (click)="filter()">Filter</button>
-                                    <a class="btn btn-primary" routerLink="/users/create">Create New</a>
+                                    <a class="btn btn-primary" *ngIf="hasCreatePermission" routerLink="/users/create">Create New</a>
                                 </div>
                             </div>
                         </div>
@@ -60,19 +60,23 @@
                                         <td *ngIf="item.active; else elseBlock" class="text-success">Yes</td>
                                         <ng-template #elseBlock> <tr class="text-danger">No</tr></ng-template>
                                         <td>
-                                            <button type="button" class="btn btn-primary" routerLink="/users/details/{{item.id}}">
+                                            <button mat-raised-button type="button" class="btn btn-primary btn-sm" routerLink="/users/details/{{item.id}}">
                                                 <i class="material-icons">visibility</i>
                                             </button>
-                                            <button type="button" class="btn btn-secondary">
+                                            <button *ngIf="hasEditPermission" mat-raised-button type="button" class="btn btn-secondary btn-sm">
                                                 <i class="material-icons">edit</i>
                                             </button>
-                                            <button type="button" class="btn btn-danger">
+                                            <button *ngIf="hasDeletePermission" mat-raised-button type="button" class="btn btn-danger btn-sm">
                                                 <i class="material-icons">delete</i>
                                             </button>
                                         </td>
                                     </tr>
                                 </tbody>
                               </table>
+                        </div>
+
+                        <div class="card-footer">
+                            <i class="material-icons">access_time</i> updated 4 minutes ago
                         </div>
                     </div>
                 </div>
