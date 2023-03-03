@@ -1,3 +1,24 @@
+
+export interface ModuleItem {
+    name : string;
+    permissions : Array<PermissionItem>;
+};
+
+export interface PermissionItem {
+    name: string;
+    permission: string;
+    selected : boolean;
+    isView : boolean;
+};
+
+export class Modules {
+    public static readonly Dashbaord : string = "Dashboard";
+    public static readonly Roles : string = "Roles";
+    public static readonly Users : string = "Users";
+    public static readonly Products : string = "Products";
+    public static readonly All : string = "All";
+};
+
 export class RolePermissions {
     public static readonly View : string = "Permissions.Users.View";
     public static readonly Create : string = "Permissions.Users.Create";
@@ -13,6 +34,7 @@ export class UserPermissions {
 };
 
 export class ProductPermissions {
+
     public static readonly View : string = "Permissions.Products.View";
     public static readonly Create : string = "Permissions.Products.Create";
     public static readonly Delete : string = "Permissions.Products.Delete";
@@ -21,4 +43,7 @@ export class ProductPermissions {
 
 export class DashboardPermissions {
     public static readonly View : string = "Permissions.Dashboard.View";
-}
+};
+
+
+

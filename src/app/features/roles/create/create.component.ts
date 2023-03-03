@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ModuleItem } from 'app/core/models/auth';
+import { PermissionsService } from 'app/core/services/permissions.service';
 
 @Component({
   selector: 'app-create',
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CreateComponent implements OnInit {
 
-  constructor() { }
+  modules : Array<ModuleItem>;
+
+  constructor(private permissionsService : PermissionsService) { }
 
   ngOnInit(): void {
+    this.modules = this.permissionsService.getAllModulesWithPermissions();
   }
 
 }
