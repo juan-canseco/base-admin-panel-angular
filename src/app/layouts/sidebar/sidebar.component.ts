@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { PermissionsService } from 'app/core/services/permissions.service';
 
 declare const $: any;
@@ -8,6 +8,9 @@ declare const $: any;
   styleUrls: ['./sidebar.component.css']
 })
 export class SidebarComponent implements OnInit {
+
+  @Output() logOut : EventEmitter<any> = new EventEmitter();
+
   menuItems: any[];
 
   constructor(private permissionsService : PermissionsService) { }
@@ -22,4 +25,8 @@ export class SidebarComponent implements OnInit {
       }
       return true;
   };
+
+  logOutClick() {
+    this.logOut.emit(null);
+  }
 }

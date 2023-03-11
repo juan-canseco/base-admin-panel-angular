@@ -5,6 +5,7 @@ import { LoginRoutingModule } from './login-routing.module';
 import { LoginComponent } from './login.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { SpinnerModule } from 'app/shared/indicators';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { MatInputModule } from '@angular/material/input';
     FormsModule, ReactiveFormsModule,
     LoginRoutingModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    SpinnerModule
   ]
 })
 export class LoginModule { }

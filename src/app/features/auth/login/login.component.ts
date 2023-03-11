@@ -15,6 +15,7 @@ export class LoginComponent implements OnInit {
               private authService : AuthService) { }
 
   form! : FormGroup;
+  loading : boolean = false;
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
@@ -23,19 +24,22 @@ export class LoginComponent implements OnInit {
     })
   }
 
+
+  
   public login() :  void {
     
     if (!this.form.valid) {
       console.log('invalid');
       return;
     }
-
+    this.loading = true;
     this.authService.login({email: this.email.value, password : this.password.value})
     .subscribe({
       next: () => {
         this.router.navigateByUrl('/');
       },
       error: err =>  {
+        this.loading = false;
         console.log(err);
       }
     });
