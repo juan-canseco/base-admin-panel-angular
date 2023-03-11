@@ -46,11 +46,11 @@
                         <div class="card-content table-responsive table-full-width" *ngIf="pagedList && pagedList.rowsCount > 0">
                             <table class="table">
                                 <thead class="text-secondary">
-                                  <th>Id</th>
-                                  <th>Name</th>
-                                  <th>Role</th>
-                                  <th>Active</th>
-                                  <th>Actions</th>
+                                  <th scope="col">Id</th>
+                                  <th scope="col">Name</th>
+                                  <th scope="col">Role</th>
+                                  <th scope="col">Active</th>
+                                  <th class="text-right">Actions</th>
                                 </thead>
                                 <tbody>
                                     <tr *ngFor="let item of pagedList.items">
@@ -59,7 +59,7 @@
                                         <td>{{item.role}}</td>
                                         <td *ngIf="item.active; else elseBlock" class="text-success">Yes</td>
                                         <ng-template #elseBlock> <tr class="text-danger">No</tr></ng-template>
-                                        <td>
+                                        <td class="text-right">
                                             <button mat-raised-button type="button" class="btn btn-primary btn-sm" routerLink="/users/details/{{item.id}}">
                                                 <i class="material-icons">visibility</i>
                                             </button>
