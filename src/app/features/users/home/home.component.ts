@@ -11,7 +11,19 @@ import { UserPermissions } from 'app/core/models/auth';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+
+  pagedList! : PagedList<User>;
+
+  hasCreatePermission : boolean;
+  hasEditPermission : boolean;
+  hasDeletePermission : boolean;
+
+  sortFields = ['Name', 'Role', 'Active']
+  itemsPerPage = [1, 2, 5, 10, 15, 20, 25, 50]
+  pageNumber = 1;
+  pageSize = 10;
   
+
   constructor(private userService : UsersService, private permissionsService : PermissionsService) { }
 
   ngOnInit(): void {
@@ -20,18 +32,14 @@ export class HomeComponent implements OnInit {
     this.hasEditPermission = this.permissionsService.hasPermission(UserPermissions.Edit);
     this.hasDeletePermission = this.permissionsService.hasPermission(UserPermissions.Delete);
   }
-  
-  public pagedList! : PagedList<User>;
 
-  public hasCreatePermission : boolean;
-  public hasEditPermission : boolean;
-  public hasDeletePermission : boolean;
 
-  public getUsers() {
+
+  getUsers() {
     
     var params  : GetUsersQueryParams = {
-      pageNumber: 1,
-      pageSize: 10,
+      pageNumber: this.pageNumber,
+      pageSize: this.pageSize,
       sortOrder: "",
       orderBy: "",
       filer: ""
@@ -47,8 +55,20 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  public filter() {
+  filter() {
     console.log("Filter click");
   }
 
+
+  onPageChange(event : number) {
+    this.pageNumber = event;
+    this.getUsers();
+  }
+
+  onPageSizeChange(event : any) {
+    this.pageSize = event.value;
+    this.pageNumber = 1;
+    this.getUsers();
+  }
+  
 }

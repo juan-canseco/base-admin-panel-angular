@@ -8,42 +8,36 @@
                 <div class="card-content">
                     <div class="container-fluid">
                         <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-inline justify-content-end align-self-end">
-                                    <div class="form-group">
-                                        <input type="text" value="" placeholder="Search..." class="form-control" id="filter">
-                                    </div>
+                            <div class="col-md-12 d-md-inline-flex">
 
-                                    <div class="dropdown">
-                                        <button class="btn btn-secondary dropdown-toggle" type="button" id="itemsPerPageButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            Items Per Page
-                                        </button>
-                                        <div class="dropdown-menu" aria-labelledby="itemsPerPageButton">
-                                            <a class="dropdown-item" href="#">5</a>
-                                            <a class="dropdown-item" href="#">10</a>
-                                            <a class="dropdown-item" href="#">15</a>
-                                            <a class="dropdown-item" href="#">20</a>
-                                            <a class="dropdown-item" href="#">25</a>
-                                        </div>
-                                    </div>
+                                <mat-form-field appearance="fill" class="my-2 px-2">
+                                    <mat-label>Search</mat-label>
+                                    <input matInput placeholder="Search">
+                                </mat-form-field>
+                                
+                                <mat-form-field appearance="fill" class="my-2 px-2">
+                                    <mat-label>Items per Page</mat-label>
+                                    <mat-select (selectionChange)="onPageSizeChange($event)">
+                                        <mat-option *ngFor="let size of itemsPerPage" [value]="size">{{size}}</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
 
-                                    <div class="dropdown">
-                                        <button class="btn btn-secondary dropdown-toggle" type="button" id="sortByButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            Sort By
-                                        </button>
-                                        <div class="dropdown-menu" aria-labelledby="sortByButton">
-                                            <a class="dropdown-item" href="#">Name</a>
-                                            <a class="dropdown-item" href="#">Role</a>
-                                            <a class="dropdown-item" href="#">Active</a>
-                                        </div>
-                                    </div>
 
-                                    <button class="btn btn-primary" type="submit" (click)="filter()">Filter</button>
-                                    <a class="btn btn-primary" *ngIf="hasCreatePermission" routerLink="/users/create">Create New</a>
-                                </div>
+                                <mat-form-field appearance="fill" class="my-2 px-2">
+                                    <mat-label>Sort By</mat-label>
+                                    <mat-select>
+                                        <mat-option *ngFor="let sortField of sortFields" [value]="sortField">{{sortField}}</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+
+                                <button class="btn btn-primary" type="submit" (click)="filter()">Filter</button>
+                                <a class="btn btn-primary" *ngIf="hasCreatePermission" routerLink="/users/create">Create New</a>
+
+
+             
                             </div>
                         </div>
-                        <div class="card-content table-responsive table-full-width" *ngIf="pagedList && pagedList.rowsCount > 0">
+                        <div class="card-content table-responsive table-full-width px-2" *ngIf="pagedList && pagedList.rowsCount > 0">
                             <table class="table">
                                 <thead class="text-secondary">
                                   <th scope="col">Id</th>
@@ -53,7 +47,11 @@
                                   <th class="text-right">Actions</th>
                                 </thead>
                                 <tbody>
-                                    <tr *ngFor="let item of pagedList.items">
+                                    <tr *ngFor="let item of pagedList.items | paginate: {
+                                        itemsPerPage: pageSize,
+                                        currentPage: pageNumber,
+                                        totalitems: pagedList.rowsCount
+                                    }; let i = index">
                                         <td>{{item.id}} </td>
                                         <td> {{item.fullname}} </td>
                                         <td>{{item.role}}</td>
@@ -76,7 +74,16 @@
                         </div>
 
                         <div class="card-footer">
-                            <i class="material-icons">access_time</i> updated 4 minutes ago
+                            <div class="row">
+                                <div class="container-fluid">
+                                    <div class="col-md-12">
+                                        <pagination-controls
+                                        [responsive]="true"
+                                        (pageChange)="onPageChange($event)">
+                                    </pagination-controls>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
