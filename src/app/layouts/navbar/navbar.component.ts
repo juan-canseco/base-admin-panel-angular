@@ -109,6 +109,12 @@ export class NavbarComponent implements OnInit {
     };
 
     getTitle(){
+      var titlee = this.location.prepareExternalUrl(this.location.path());
+      if(titlee.charAt(0) === '#') {
+        console.log(titlee);
+        titlee = titlee.slice( 1 );
+        console.log(titlee);
+    }
       return 'Dashboard';
     }
 
