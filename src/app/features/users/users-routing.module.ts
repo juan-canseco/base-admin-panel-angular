@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { PermissionGuard } from 'app/core/guards/permission.guard';
+import { PermissionGuard } from 'app/core/guards/permission';
 import { UserPermissions } from 'app/core/models/auth';
 import { RolesResolver } from './resolvers/roles-resover';
 

@@ -3,8 +3,8 @@ import { CommonModule, } from '@angular/common';
 import { BrowserModule  } from '@angular/platform-browser';
 import { Routes, RouterModule } from '@angular/router';
 import { AdminLayoutComponent } from './features/main';
-import { NotLoggedInGuard } from './core/guards/not-logged-in.guard';
-import { AuthGuard } from './core/guards/auth.guard';
+import { NotLoggedInGuard } from './core/guards/not-logged-in';
+import { AuthGuard } from './core/guards/auth';
 
 const routes: Routes = [
   {
