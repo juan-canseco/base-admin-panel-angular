@@ -1,8 +1,8 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Role, RoleDetails } from '../models/roles';
-import { PagedList } from '../models/shared';
+import { Role, RoleDetails } from '../../models/roles';
+import { PagedList } from '../../models/shared';
 import { environment } from 'environments/environment';
 
 export interface GetRolesQueryParams {
@@ -29,6 +29,11 @@ export class RolesService {
     .append("sortOrder", queryParams.sortOrder)
     .append("filter", queryParams.filter);    
     return this.http.get<PagedList<Role>>(baseUrl, {params: params});
+  }
+  
+  getAllRoles() : Observable<Role[]> {
+    var baseUrl = environment.baseUrl + '/roles/all';
+    return this.http.get<Role[]>(baseUrl);
   }
 
   getRoleDetails(roleId : string) : Observable<RoleDetails> {

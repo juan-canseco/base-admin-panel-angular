@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ModuleItem } from 'app/core/models/auth';
-import { PermissionsService } from 'app/core/services/permissions.service';
+import { PermissionsService } from 'app/core/services/permissions';
 
 @Component({
   selector: 'app-create',

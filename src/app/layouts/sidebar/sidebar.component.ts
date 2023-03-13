@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { PermissionsService } from 'app/core/services/permissions.service';
+import { PermissionsService } from 'app/core/services/permissions';
 
 declare const $: any;
 @Component({

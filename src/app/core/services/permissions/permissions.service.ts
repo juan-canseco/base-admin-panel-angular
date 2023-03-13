@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { MenuItem } from '../models/menu';
-import { UserPermissions, RolePermissions, DashboardPermissions, ProductPermissions, ModuleItem, Modules} from '../models/auth';
+import { MenuItem } from '../../models/menu';
+import { UserPermissions, RolePermissions, DashboardPermissions, ProductPermissions, ModuleItem, Modules} from '../../models/auth';
 
 @Injectable({
   providedIn: 'root'

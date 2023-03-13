@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { UsersService, GetUsersQueryParams} from 'app/core/services/users.service';
+import { UsersService, GetUsersQueryParams} from 'app/core/services/users';
 import { PagedList } from 'app/core/models/shared';
 import { User } from 'app/core/models/users';
-import { PermissionsService } from 'app/core/services/permissions.service';
+import { PermissionsService } from 'app/core/services/permissions';
 import { UserPermissions } from 'app/core/models/auth';
 
 @Component({

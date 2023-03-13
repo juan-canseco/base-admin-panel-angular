@@ -3,8 +3,8 @@ import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { environment } from 'environments/environment';
 import { Observable, shareReplay, tap } from 'rxjs';
-import { LoginRequest, LoginResponse } from '../models/auth';
-import { UserProfile } from '../models/auth/user-profile';
+import { LoginRequest, LoginResponse } from '../../models/auth';
+import { UserProfile } from '../../models/auth/user-profile';
 
 @Injectable({
   providedIn: 'root'

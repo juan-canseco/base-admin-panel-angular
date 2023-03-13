@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Role } from 'app/core/models/roles';
 import { PagedList } from 'app/core/models/shared';
-import { RolesService, GetRolesQueryParams} from 'app/core/services/roles.service';
+import { RolesService, GetRolesQueryParams} from 'app/core/services/roles';
 import { RolePermissions } from 'app/core/models/auth';
-import { PermissionsService } from 'app/core/services/permissions.service';
+import { PermissionsService } from 'app/core/services/permissions';
 
 
 @Component({

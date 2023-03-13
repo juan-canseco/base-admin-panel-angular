@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { PermissionGuard } from 'app/core/guards/permission.guard';
 import { UserPermissions } from 'app/core/models/auth';
+import { RolesResolver } from './resolvers/roles-resover';
 
 const routes: Routes = [
   {
@@ -20,7 +21,10 @@ const routes: Routes = [
     path: 'create',
     loadChildren: () => import('./create').then(m => m.CreateModule),
     canActivateChild: [PermissionGuard],
-    data: {permission : UserPermissions.Create}
+    data: {permission : UserPermissions.Create},
+    resolve: {
+      roles:  RolesResolver
+    }
   }
 ];
 
