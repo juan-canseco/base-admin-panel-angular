@@ -8,6 +8,7 @@ import { ComponentsModule } from './layouts/';
 import { AppComponent } from './app.component';
 import { AdminLayoutComponent } from './features/main';
 import { JwtModule } from '@auth0/angular-jwt';
+import { NotificationsModule } from './core/services/notifications/notifications.module';
 
 export function tokenGetter() {
   return localStorage.getItem("token");
@@ -29,6 +30,7 @@ export function tokenGetter() {
     ComponentsModule,
     RouterModule,
     AppRoutingModule,
+    NotificationsModule.forRoot()
   ],
   declarations: [
     AppComponent,
